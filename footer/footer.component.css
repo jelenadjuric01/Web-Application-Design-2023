@@ -1,0 +1,11 @@
+footer {
+    bottom: 0;
+   
+    position: relative;
+    width: 100%;
+    display: flex; 
+    justify-content:left; 
+    align-items:left;
+    background-color: lightblue;
+    
+}

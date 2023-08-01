@@ -1,0 +1,43 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row loginMenu">
+        <div class="col">
+            <button mat-menu-item (click)="back()" class="matMenuFont">Početna strana</button>
+        </div>
+    
+        
+        <div class="col">
+            <button mat-menu-item (click)="register()" class="matMenuFont">Registruj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="reset()" class="matMenuFont">Zaboravljena lozinka</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="loginMenu">
+    <table>
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td><input type="text" name="username" [(ngModel)]="username"></td>
+            <td> <span *ngIf='errorUsername' class="errorClass">{{errorUsername}}</span></td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td><input type="password" name="password" [(ngModel)]="password"></td>
+            <td> <span *ngIf='errorPassword' class="errorClass">{{errorPassword}}</span></td>
+        </tr>
+        <tr>
+            
+            <td>
+                <button (click)="login()" class="button" >Uloguj se</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>

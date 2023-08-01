@@ -1,0 +1,129 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row agencyMode">
+        <div class="col">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="workers()" class="matMenuFont">Radnici</button>
+        </div>
+        
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="back()" class="matMenuFont">Nazad</button>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="agencyMode text-center">
+    <table>
+        <tr>
+            <td>
+    <output type="text" *ngIf="slobodno!=0">Možete dodati još {{slobodno}} radnika.</output>
+    <!--Dodati uslov da nema vec aktivan zahtev-->
+    <input type="number" *ngIf="slobodno==0 && !uputiti" [(ngModel)]="reqNumber" placeholder="Unesite broj radnika"><br> <button *ngIf="slobodno==0 && !uputiti" class="button" (click)="uputiZahtev()">Pošalji zahtev</button>
+   
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="agencyMode errorClass">{{alerMessage}}</div>
+<div class="agencyMode successClass">{{alert}}</div>
+
+<br>
+<div class="agencyMode text-center">
+    
+    <table *ngIf="radnici.length>0">
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Telefon</th>
+            <th>Mejl</th>
+            <th>Specijalizacija</th>
+        </tr>
+        <tr *ngFor="let r of radnici">
+            <td><input type="text" name="name" [(ngModel)]="r.firstname"></td>
+            <td><input type="text" name="lastname" [(ngModel)]="r.lastname"></td>
+            <td><input type="tel" name="phone" [(ngModel)]="r.phone"></td>
+            <td><input type="text" name="email" [(ngModel)]="r.email" req></td>
+            <td><input type="text" name="spec" [(ngModel)]="r.specialization"></td>
+            <td><button class="button" (click)="update(r)">Azuriraj</button></td>
+            <td><button class="button" (click)="delete(r)">Obrisi</button></td>
+            <td> <span *ngIf='errorUPhone' class="errorClass">{{errorUPhone}}</span></td>
+            <td> <span *ngIf='errorUEmail' class="errorClass">{{errorUEmail}}</span></td>
+
+        </tr>
+        <tr>
+            <td colspan="4">
+                 <span *ngIf='updatedMessage!=""' class="successClass">{{updatedMessage}}</span>
+
+            </td>
+        </tr>
+    </table>
+    <br>
+    <output type="text" *ngIf="radnici.length==0" class="matMenuFont"> Nema radnika!</output>
+</div>
+<div class="agencyMode errorClass" *ngIf="error">{{error}}</div>
+<br>
+<div class="agencyMode">
+<form enctype="multipart/form-data" (submit)="register()" *ngIf="slobodno!=0">
+    <table>
+        <tr>
+            <td>Ime:</td>
+            <td><input type="text" name="name" [(ngModel)]="name"></td>
+            <td> <span *ngIf='errorName' class="errorClass">{{errorName}}</span></td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td><input type="text" name="lastname" [(ngModel)]="lastname"></td>
+            <td> <span *ngIf='errorName' class="errorClass">{{errorName}}</span></td>
+        </tr>
+    <tr>
+        <td>Kontakt telefon:</td>
+        <td><input type="tel" name="phone"
+             [(ngModel)]="phone"></td>
+        <td> <span *ngIf='errorPhone' class="errorClass">{{errorPhone}}</span></td>
+
+    </tr>
+    <tr>
+        <td>Elektronska pošta:</td>
+        <td><input type="text" name="email" [(ngModel)]="email" req></td>
+        <td> <span *ngIf='errorEmail' class="errorClass">{{errorEmail}}</span></td>
+    </tr>
+    <tr>
+        <td>Specijalizacija:</td>
+        <td><input type="text" name="spec" [(ngModel)]="specialization"></td>
+        <td> <span *ngIf='errorSpec' class="errorClass">{{errorSpec}}</span></td>
+    </tr>
+    <tr>
+        <td>
+            <button type="submit" class="button">Dodaj</button>
+        </td>
+    </tr>
+ 
+  
+
+   
+    
+</table>
+</form>
+<div *ngIf="addedUser" class=" agencyMode successClass">
+    {{alertMessage}}
+</div>
+</div>
+
+

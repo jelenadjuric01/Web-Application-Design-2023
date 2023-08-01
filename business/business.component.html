@@ -1,0 +1,321 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid" *ngIf="korisnik.type=='klijent'">
+
+    <div class="row loginMenu">
+        <div class="col">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="objects()" class="matMenuFont">Objekti</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="agencies()" class="matMenuFont">Agencije</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="korisnik.type=='agencija'">
+    <div class="row loginMenu">
+
+    <div class="col">
+        <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+    </div>
+    <div class="col">
+        <button mat-menu-item (click)="workers()" class="matMenuFont">Radnici</button>
+    </div>
+    
+    <div class="col">
+        <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+    </div> 
+    <div class="col">
+        <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+    </div>
+    <div class="col">
+        <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+    </div>
+    <div class="col">
+        <button mat-menu-item (click)="back()" class="matMenuFont">Nazad</button>
+    </div>
+    </div>
+</div>
+<br>
+    <div class="loginMenu text-center" *ngIf="korisnik.type=='agencija'">
+
+        <table *ngIf="zahtevi.length>0">
+            <tr class="textBig">
+                <th>Klijent</th>
+                <th>Kvadratura i adresa objekta</th>
+                <th>Rok</th>
+            </tr>
+            <tr *ngFor="let c of zahtevi">
+                <td class="textBig">
+                    {{user(c.client)}}
+                    
+        
+                </td>
+                <td class="textBig">
+                    {{object(c.object)}}
+                </td>
+                <td class="textBig">
+                    {{getDate(c)}}
+                </td>
+                <td>
+                    <button class="button" (click)="showSketch(c.object)">Prikazi skicu</button><button class="button" *ngIf="c.status!='aPrihvaceno'" (click)="odbij(c)">Odbij</button><button class="button" *ngIf="c.status!='aPrihvaceno'" (click)="prihvati(c)">Prihvati</button>
+                    <br>
+                    <input type="number" [(ngModel)]="ponuda" placeholder="Ponuda" *ngIf="c.status!='aPrihvaceno'">
+        
+                </td>
+                
+            </tr>
+            
+        </table>
+
+       
+        <output type="text" *ngIf="zahtevi.length==0" class="textBig">Nema zahteva klijenata!</output>
+        </div>
+        <span *ngIf='errorPonuda' class="errorClass loginMenu">{{errorPonuda}}</span>
+
+        <br>
+        <div class="loginMenu text-center" *ngIf="korisnik.type=='agencija'">
+ 
+            <table *ngIf="poslovi.length!=0">
+                <tr class="textBig">
+                    <th>Klijent</th>
+                    <th>Kvadratura i adresa objekta</th>
+                    <th>Rok</th>
+                </tr>
+                <tr *ngFor="let c of poslovi">
+                    <td class="textBig">
+                        {{user(c.client)}}
+                        
+            
+                    </td>
+                    <td class="textBig">
+                        {{object(c.object)}}
+                    </td>
+                    <td class="textBig">
+                        {{getDate(c)}}
+                    </td>
+                    <td>
+                        <button class="button" (click)="showSketchColor(c)">Prikazi skicu</button><button class="button" *ngIf="(dovoljno==false) ||(dovoljno==true && c.dovoljno==true)" (click)="dodeli(c)">Dodeli radnike</button><button class="button" *ngIf="(c.dovoljno) && nezaposleni.length>0" 
+                            (click)="assign(c)">Dodeli</button><button class="button" (click)="opremi(c)" *ngIf="roomAssigned(c)">Oprema se</button><button class="button" (click)="zavrsi(c)" *ngIf="roomFinished(c)">Zavrsi</button>
+                        <br>
+                        
+            
+                    </td>
+                    <td *ngIf="(c.dovoljno && nezaposleni.length>0) || roomAssigned(c) || roomFinished(c)">
+                        <select [(ngModel)]="soba" (change)="color(c)">
+                            <option value="0">
+                                Prva soba
+                            </option>
+                            <option *ngIf="roomExists(c,1)" value="1">
+                                Druga soba
+                            </option>
+                            <option *ngIf="roomExists(c,2)" value="2">
+                                Treca soba
+                            </option>
+                        </select>
+                        
+                    </td>
+                    <td *ngIf="c.dovoljno && nezaposleni.length>0">
+                        <select [(ngModel)]="radnik">
+                            <option value="">
+
+                            </option>
+                            <option *ngFor="let r of nezaposleni" value="{{r._id}}">
+                                {{r.firstname}} {{r.lastname}}
+                            </option>
+                            
+                        </select>
+                        
+                    </td>
+                    <td class="textBig">
+                        <output type="text" *ngIf="c.rooms[0]!=-1">Prva soba:</output>
+                        <ul *ngIf="c.rooms[0]!=-1">
+                            <li *ngFor="let w of workersOfRoom(c,0)"> {{w.firstname}} {{w.lastname}}</li>
+                        </ul>
+                       
+                    </td>
+                    <td class="textBig" *ngIf="roomExists(c,1)">
+                        <output type="text" *ngIf="c.rooms[1]!=-1">Druga soba:</output>
+                        <ul *ngIf="c.rooms[1]!=-1">
+                            <li *ngFor="let w of workersOfRoom(c,1)"> {{w.firstname}} {{w.lastname}}</li>
+                        </ul>
+                       
+                    </td>
+                    <td class="textBig" *ngIf="roomExists(c,2)">
+                        <output type="text" *ngIf="c.rooms[2]!=-1">Treca soba:</output>
+                        <ul *ngIf="c.rooms[2]!=-1">
+                            <li *ngFor="let w of workersOfRoom(c,2)"> {{w.firstname}} {{w.lastname}}</li>
+                        </ul>
+                       
+                    </td>
+                    <td>
+                        <span *ngIf='errorPonuda' class="errorClass">{{errorPonuda}}</span>
+                    </td>
+                </tr>
+                
+            </table>
+            
+           
+            <output type="text" *ngIf="poslovi.length==0" class="textBig">Nema aktivnih poslova!</output>
+            </div>
+            <div class="loginMenu" *ngIf="alertBussines && korisnik.type=='agencija'">
+                {{alertBussines}}
+            </div>
+
+
+
+
+    <div class="loginMenu" *ngIf="korisnik.type=='klijent'">
+        <button class="button" (click)="finished()">Zavrseni poslovi</button><button class="button" (click)="active()">Aktivni poslovi</button><button class="button" (click)="requests()">Zahtevi za saradnjom</button>
+        <button class="button" (click)="all()">Svi poslovi</button>
+
+    </div>
+    <br>
+    <div class="loginMenu text-center" *ngIf="korisnik.type=='klijent'">
+
+        <table *ngIf="zahtevi.length>0">
+            <tr class="textBig">
+                <th>Agencija</th>
+                <th>Kvadratura i adresa objekta</th>
+                <th>Rok</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let c of zahtevi" [class.zeleno]="c.status=='aPrihvaceno'" [class.crveno]="c.status=='aOdbijeno'">
+                <td class="textBig">
+                    {{agency(c.agency)}}
+                    
+        
+                </td>
+                <td class="textBig">
+                    {{object(c.object)}}
+                </td>
+                <td class="textBig">
+                    {{getDate(c)}}
+                </td>
+                <td class="textBig">
+                    {{getStatus(c)}}
+                </td>
+                
+                
+                <td>
+                    <button class="button" (click)="showSketchColor(c)">Prikazi skicu</button><button class="button" *ngIf="c.status=='aPrihvaceno'" (click)="accept(c)">Prihvati</button><button class="button" *ngIf="c.status=='aktivan'" (click)="cancel(c)">Otkazi</button>
+                    <button class="button" *ngIf=zavrsen(c) (click)="zavrsiPosao(c)">Plati</button><button class="button" *ngIf="c.status=='aPrihvaceno'" (click)="deny(c)">Odbij</button>
+                    <br>
+                    <input type="text" [(ngModel)]="razlog" placeholder="Razlog otkazivanja" *ngIf="c.status=='aktivan'">
+        
+                </td>
+                <td *ngIf="errorPonuda">
+                    <span *ngIf='errorPonuda' class="errorClass">{{errorPonuda}}</span>
+                </td>
+            </tr>
+            
+            
+        </table>
+        
+       
+        <output type="text" *ngIf="zahtevi.length==0" class="textBig">Nema poslova!</output>
+        </div>
+        <br>
+        <div class="loginMenu" *ngIf="alertBussines && korisnik.type=='klijent'">
+            {{alertBussines}}
+        </div>
+        <div class="loginMenu">
+            <canvas #canvasSh></canvas>
+        </div>
+        <br>
+        <hr *ngIf="zavrseni">
+        <div class="loginMenu text-center" *ngIf="zavrseni">
+            <table *ngIf="komentari.length>0">
+                <tr class="textBig">
+                    <th>Agencija</th>
+                    <th>Ocena</th>
+                    <th>Komentar</th>
+                    
+                </tr>
+                <tr *ngFor="let c of komentari">
+                    <td class="textBig">
+                       {{c.Agencija}}
+                        
+            
+                    </td>
+                    
+                    <td class="textBig">
+                        <input type="number" [(ngModel)]="c.grade">
+                    </td>
+                    <td class="textBig">
+                        <input type="text" [(ngModel)]="c.review">
+                    </td>
+                    <td>
+                        <button class="button" (click)="updateComment(c)">Azuriraj</button><button class="button" (click)="deleteComment(c)">Obrisi</button>
+                    </td>
+                    
+                    
+                </tr>
+                
+                
+            </table>
+            <output type="text" *ngIf="komentari.length==0" class="textBig">Nema komentara!</output>
+
+        </div>
+        <div class="loginMenu errorClass" *ngIf="error && korisnik.type=='klijent'">{{error}}</div>
+        <div class="loginMenu text-center" *ngIf="zavrseni && nekomentarisane.length>0">
+            <form>
+                
+                <table>
+                  
+                <tr>
+                    <td>Agencija:</td>
+                    <td><select [(ngModel)]="agencijaK" name="objekat">
+                        <option value="">
+            
+                        </option>
+                        <option *ngFor="let o of nekomentarisane" value="{{o.username}}">
+                            {{o.name}}
+                        </option>
+                    </select></td>
+                    <td> <span *ngIf='errorAgency' class="errorClass">{{errorAgency}}</span></td>
+                </tr>
+                <tr>
+                    <td>Ocena:</td>
+                    <td><input type="number" [(ngModel)]="ocena" name="date"></td>
+                    <td> <span *ngIf='errorOcena' class="errorClass">{{errorOcena}}</span></td>
+                </tr>
+                <tr>
+                    <td>Komentar:</td>
+                    <td><input type="text" [(ngModel)]="text" name="r"></td>
+                    <td> <span *ngIf='errorText' class="errorClass">{{errorText}}</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button  class="button" (click)="comment()">Ostavi komentar</button>
+                    </td>
+                </tr>
+                
+            </table>
+
+            </form>
+
+            </div>
+            <br>
+            <div class="loginMenu textBig" *ngIf="zavrseni && nekomentarisane.length==0">
+                Nemate nekomentarisane agencije!
+            </div>
+        
+
+<div class="loginMenu">
+    <canvas #canvasSh></canvas>
+</div>

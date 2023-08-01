@@ -1,0 +1,28 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row agencyMode">
+        <div class="col">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="workers()" class="matMenuFont">Radnici</button>
+        </div>
+        
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+    </div>
+</div>
+<br>
+<div class="welcome">Dobrodošli {{korisnik.username}}!</div>

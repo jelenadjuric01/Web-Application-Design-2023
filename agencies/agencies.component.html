@@ -1,0 +1,112 @@
+<mat-menu>
+</mat-menu>
+<div class="container-fluid">
+
+    <div class="row loginMenu">
+        <div class="col" *ngIf="!korisnik">
+            <button mat-menu-item (click)="login()" class="matMenuFont">Uloguj se</button>
+        </div>
+        <div class="col" *ngIf="!korisnik">
+            <button mat-menu-item (click)="register()" class="matMenuFont">Registruj se</button>
+        </div>
+        <div class="col" *ngIf="!korisnik">
+            <button mat-menu-item (click)="back()" class="matMenuFont">Nazad</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="objects()" class="matMenuFont">Objekti</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item class="matMenuFont" (click)="Goback()">Agencije</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+      
+    </div>
+</div>
+<br>
+<h2 class="loginMenu" *ngIf="korisnik">Zatrazi saradnju</h2>
+    <div class="loginMenu" *ngIf="korisnik">
+        <form>
+            
+            <table *ngIf="objekti.length>0">
+              
+            <tr>
+                <td>Objekat:</td>
+                <td><select [(ngModel)]="obj" name="objekat">
+                    <option value="">
+        
+                    </option>
+                    <option *ngFor="let o of objekti" value="{{o._id}}">
+                        {{o.type}} od {{o.square}} kvadrata, {{o.rooms}} soba, {{o.adress}}
+                    </option>
+                </select></td>
+                <td> <span *ngIf='errorObject' class="errorClass">{{errorObject}}</span></td>
+            </tr>
+            <tr>
+                <td>Rok za kraj rada:</td>
+                <td><input type="date" [(ngModel)]="date" name="date"></td>
+                <td> <span *ngIf='errorDate' class="errorClass">{{errorDate}}</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <button  class="button" (click)="zatrazi()">Zatrazi</button>
+                </td>
+            </tr>
+            
+        </table>
+        <output type="text" *ngIf="objekti.length==0" class="textBig">Nemate objekte!</output>
+        </form>
+        
+        </div>
+        <div *ngIf="alertMessage" class="loginMenu successClass">
+            {{alertMessage}}
+        </div>
+
+<br>
+    <div class="loginMenu text-center" *ngIf="komentari.length>0">
+      
+            
+            <table *ngIf="komentari.length>0">
+                <tr class="textBig">
+                    <th>Klijent</th>
+                    <th>Ocena</th>
+                    <th>Komentar</th>
+                    
+                </tr>
+                <tr *ngFor="let c of komentari">
+                    <td class="textBig">
+                       {{c.Klijent}}
+                        
+            
+                    </td>
+                    
+                    <td class="textBig">
+                        {{c.grade}}
+                    </td>
+                    <td class="textBig">
+                        {{c.review}}
+                    </td>
+                   
+                    
+                    
+                </tr>
+                
+                
+            </table>
+        
+        
+        </div>
+        <div *ngIf="komentari.length==0" class="loginMenu textBig">
+            Nema komentara!
+        </div>
+

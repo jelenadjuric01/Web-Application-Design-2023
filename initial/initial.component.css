@@ -1,0 +1,45 @@
+.initialMenu{
+    display: flex; 
+    justify-content:center; 
+    align-items:center;
+   
+    
+}
+.matMenuFont{
+    font-size: 18px;
+    font-weight: 500;
+    text-align:center;
+
+}
+.tableMenu{
+    
+    justify-content: center;
+    display: flex; 
+    align-items:center;
+    border-spacing: 50px;
+    width: max-content;
+    
+}
+.tableComponent{
+    background-color: whitesmoke;
+    border-width: 20px;
+    
+
+}
+.nameAgency{
+    background-color: whitesmoke;
+    font-size: 30px;
+    border-radius: 10%;
+  
+
+}
+.button{
+    background-color: lightblue;
+    border-radius: 12px;
+    border-color: whitesmoke;
+}
+.image{
+    width: 200px;
+    
+    height: 200px;
+}
