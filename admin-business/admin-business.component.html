@@ -1,0 +1,78 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row loginMenu">
+        <div class="col">
+            <button mat-menu-item (click)="showAll(true)" class="matMenuFont">Klijenti</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="showAll(false)" class="matMenuFont">Agencije</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+    </div>
+</div>
+<br>
+
+   
+    <div class="loginMenu text-center">
+
+        <table *ngIf="poslovi.length>0">
+            <tr class="textBig">
+                <th>Klijent</th>
+                <th>Agencija</th>
+                <th>Kvadratura i adresa objekta</th>
+                <th>Rok</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let c of poslovi">
+                <td class="textBig">
+                    {{user(c.client)}}
+                </td>
+                <td class="textBig">
+                    {{agency(c.agency)}}
+                    
+        
+                </td>
+                <td class="textBig">
+                    {{object(c.object)}}
+                </td>
+                <td class="textBig">
+                    {{getDate(c)}}
+                </td>
+                <td class="textBig">
+                    {{getStatus(c)}}
+                </td>
+                
+                
+                <td>
+                    <button class="button" (click)="showSketchColor(c)">Prikazi skicu</button><button class="button" *ngIf="c.status=='kOtkazan'" (click)="deny(c)">Odbij otkazivanje</button><button class="button" *ngIf="c.status=='kOtkazan'" (click)="cancel(c)">Otkazi</button><br>
+                    <output type="text" *ngIf="c.status=='kOtkazan'|| c.status=='otkazan'"></output>{{c.cancelReason}}
+        
+                </td>
+                
+            </tr>
+            
+            
+        </table>
+        
+       
+        <output type="text" *ngIf="poslovi.length==0" class="textBig">Nema poslova!</output>
+        </div>
+        <br>
+        
+        <div class="loginMenu">
+            <canvas #canvasSh></canvas>
+        </div>
+        

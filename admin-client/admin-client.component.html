@@ -1,0 +1,152 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row loginMenu">
+        <div class="col">
+            <button mat-menu-item (click)="changeShowing(0)" class="matMenuFont">Odobreni klijenti</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changeShowing(2)" class="matMenuFont">Dodaj novog klijenta</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item  class="matMenuFont" (click)="changeShowing(1)">Zahtevi</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="back()" class="matMenuFont">Nazad</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        
+    </div>
+</div>
+<br>
+<div class="loginMenu text-center">
+    <table  *ngIf="showing==0">
+        <tr *ngFor="let c of approvedAgencies">
+            <td class="textBig">
+                <output type="text" *ngIf="!updating"> {{c.firstname}}</output> <br> <output type="text" *ngIf="!updating"> {{c.lastname}}</output><br>
+                <output type="text" *ngIf="!updating"> {{c.phone}}</output> <br> <output type="text" *ngIf="!updating"> {{c.email}}</output>
+                <input type="text" *ngIf="updating" [(ngModel)]="c.firstname"> 
+
+                <br> <input type="text" *ngIf="updating" [(ngModel)]="c.lastname"><br>
+                <input type="text" *ngIf="updating"[(ngModel)]="c.phone">
+                 <span *ngIf='errorPhone' class="errorClass">{{errorPhone}}</span>
+                <br> 
+                <input type="text" *ngIf="updating" [(ngModel)]="c.email"> 
+                <span *ngIf='errorEmail' class="errorClass">{{errorEmail}}</span>
+                <br>
+                
+                    
+                        <input type="file" name="image" accept="image/*" (change)="onFileSelected($event)" *ngIf="updating">
+        
+                     <span *ngIf='errorFile' class="errorClass">{{errorFile}}</span>
+        
+        
+               
+                
+
+
+            </td>
+            <td>
+                <button class="button" (click)="delete(c.username)">Obriši</button><button class="button" (click)="update(c)">Azuriraj</button>
+
+
+            </td>
+        </tr>
+        <tr *ngIf="error">
+            <td class="errorClass">
+                {{error}}
+            </td>
+        </tr>
+    </table>
+    <output type="text" *ngIf="showing==0 && approvedAgencies.length==0" class="textBig">Nema klijenata!</output>
+</div>
+<div class="loginMenu text-center">
+
+    <table *ngIf="showing==1">
+        <tr *ngFor="let c of unapprovedAgencies">
+            <td class="textBig">
+                <output type="text"> {{c.firstname}}</output> <br> <output type="text"> {{c.lastname}}</output><br>
+                <output type="text"> {{c.phone}}</output> <br> <output type="text"> {{c.email}}</output>
+
+            </td>
+            <td>
+                <button class="button" (click)="deny(c.username,c.email)">Odbij</button><button class="button" (click)="accept(c.username)">Prihvati</button>
+
+
+            </td>
+        </tr>
+    </table>
+    <output type="text" *ngIf="showing==1 && unapprovedAgencies.length==0" class="textBig">Nema zahteva klijenata!</output>
+</div>
+<div class="loginMenu">
+<form enctype="multipart/form-data" (submit)="register()" *ngIf="showing==2">
+    <table>
+    <tr>
+        <td>Korisnicko ime:</td>
+        <td><input type="text" name="username" [(ngModel)]="username"></td>
+        <td> <span *ngIf='errorUsername' class="errorClass">{{errorUsername}}</span></td>
+    </tr>
+    <tr>
+        <td>Lozinka:</td>
+        <td><input type="password" name="password" [(ngModel)]="password"></td>
+        <td> <span *ngIf='errorPassword' class="errorClass">{{errorPassword}}</span></td>
+    </tr>
+    <tr>
+        <td>Potvrdi lozinku:</td>
+        <td><input type="password" name="confirmPassword" [(ngModel)]="confirmPassword"></td>
+        <td> <span *ngIf='errorConfirmPassword' class="errorClass">{{errorConfirmPassword}}</span></td>
+    </tr>
+    <tr>
+        <td>Kontakt telefon:</td>
+        <td><input type="tel" name="phone"
+             [(ngModel)]="phone"></td>
+        <td> <span *ngIf='errorPhone' class="errorClass">{{errorPhone}}</span></td>
+
+    </tr>
+    <tr>
+        <td>Elektronska pošta:</td>
+        <td><input type="text" name="email" [(ngModel)]="email" req></td>
+        <td> <span *ngIf='errorEmail' class="errorClass">{{errorEmail}}</span></td>
+    </tr>
+    <tr>
+        <td>Profilna fotografija:</td>
+        <td>
+            <input type="file" name="pictureUpload"  accept="image/*"
+            (change)="onFileSelected($event)">
+
+        </td>
+        <td> <span *ngIf='errorFile' class="errorClass">{{errorFile}}</span></td>
+
+
+    </tr>
+
+    <tr>
+        <td>Ime:</td>
+        <td><input type="text" name="name" [(ngModel)]="firstname"></td>
+        <td> <span *ngIf='errorName' class="errorClass">{{errorName}}</span></td>
+    </tr>
+    <tr>
+        <td>Prezime:</td>
+        <td><input type="text" name="lastname" [(ngModel)]="lastname"></td>
+        <td> <span *ngIf='errorAdress' class="errorClass">{{errorAdress}}</span></td>
+    </tr>
+    <tr>
+        <td>
+            <button type="submit" class="button">Register</button>
+        </td>
+    </tr>
+    
+</table>
+</form>
+</div>
+
+<div *ngIf="addedUser && showing==2" class=" loginMenu successClass">
+    {{alertMessage}}
+</div>
+

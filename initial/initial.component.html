@@ -1,0 +1,91 @@
+<mat-menu>
+</mat-menu>
+<div class="container-fluid">
+
+    <div class="row initialMenu">
+        <div class="col" *ngIf="!korisnik">
+            <button mat-menu-item (click)="login()" class="matMenuFont">Uloguj se</button>
+        </div>
+        <div class="col" *ngIf="!korisnik">
+            <button mat-menu-item (click)="register()" class="matMenuFont">Registruj se</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="objects()" class="matMenuFont">Objekti</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item class="matMenuFont">Agencije</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col" *ngIf="korisnik">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+      
+    </div>
+</div>
+<br>
+<div class="container-fluid text-center">
+    <div class="row initialMenu">
+        <div class="col">
+            <input type="text" placeholder="Naziv agencije" [(ngModel)]="name">
+        
+            <input type="text" placeholder="Adresa" [(ngModel)]="adress">
+       
+            <button (click)="search()" class="button" (click)="search()">Pretrazi</button>
+        </div>
+    </div>
+    <br>
+    <div class="row initialMenu">
+        <div class="col-sm-12">
+            Sortiraj po:
+            <input type="checkbox" id="naziv" [(ngModel)]="sortName"><label for="naziv">Nazivu</label> 
+            <input type="checkbox" id="adresa" [(ngModel)]="sortAdr"><label for="adresa">Adresi  </label> 
+            <select [(ngModel)]="sort">
+                <option value="desc">
+                    Opadajuce
+                </option>
+                <option value="asc">
+                    Rastuce
+                </option>
+            </select>
+            <button class="button" (click)="sortAgencies()">Sortiraj</button>
+        </div>
+    </div>
+
+</div>
+<br>
+<div class="container-fluid text-right">
+<div class="initialMenu">
+    <table class="tableComponent" >
+        <tr>
+            <table *ngFor="let a of showedAgencies">
+        <tr>
+            
+            <td>
+                <img src="../../assets/{{a.profile}}" class="image">
+            </td>
+            <td style="font-size: 30px; font-weight: bold;">
+               <a  [routerLink]="['/agencies', a.username]" style="color: black;">{{a.name}}</a> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="max-width: 200px;">{{a.description}} </td>
+            
+        </tr>
+        
+       
+            </table>
+            
+        </tr>
+        
+    
+    </table>
+</div>
+</div>

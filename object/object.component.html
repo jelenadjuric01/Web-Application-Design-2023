@@ -1,0 +1,222 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+
+    <div class="row loginMenu">
+        <div class="col">
+            <button mat-menu-item (click)="profile()" class="matMenuFont">Profil</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item  class="matMenuFont">Objekti</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="agencies()" class="matMenuFont">Agencije</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+    </div>
+</div>
+<br>
+
+
+<div class="loginMenu text-center">
+    <table *ngIf="objekti.length!=0">
+        <tr>
+            <th>Tip</th>
+            <th>Adresa</th>
+            <th>Broj soba</th>
+            <th>Kvadratura</th>
+        </tr>
+        <tr *ngFor="let c of objekti">
+            <td> 
+                <select  [(ngModel)]="c.type" name="text">
+                    <option value="kuca">Kuca</option>
+                    <option value="stan">Stan</option>
+                </select> </td><td>
+                <input type="text" name="adress" [(ngModel)]="c.adress"></td><td>
+                <input type="number" name="city" [(ngModel)]="c.rooms" readonly></td><td>
+                <input type="number" name="street" [(ngModel)]="c.square" ></td>
+            <td>
+                <button class="button" (click)="delete(c)" >Obriši</button><button class="button" (click)="update(c)" >Azuriraj</button>
+                <button class="button" (click)="showSketch(c)" >Prikazi skicu</button>
+
+
+            </td>
+            <td>
+                <span *ngIf='errorType' class="errorClass">{{errorType}}</span>
+
+          <br>
+                <span *ngIf='errorRooms' class="errorClass">{{errorRooms}}</span>
+
+                <br>
+                <span *ngIf='errorSquare' class="errorClass">{{errorSquare}}</span>
+                
+            </td>
+        </tr>
+        <tr *ngIf="error">
+            <td class="errorClass" colspan="5">
+                 {{error}}
+            </td>
+        </tr>
+        
+    </table>
+    <output type="text" *ngIf="objekti.length==0" class="textBig">Nema objekata!</output>
+</div>
+<div class="loginMenu">
+    <canvas #canvasSh></canvas>
+
+</div>
+
+<br>
+
+<h2 class="row loginMenu">Dodaj objekat</h2>
+<div class="loginMenu">
+    
+
+<form enctype="multipart/form-data">
+    <table>
+    <tr>
+    <td>Tip objekta:</td>
+ <td> <select name="tip" id="tip" [(ngModel)]="type">
+    <option value="stan">Stan</option>
+    <option value="kuca">Kuća</option>
+  </select>
+ </td>
+ <td>
+  <span *ngIf='errorType' class="errorClass">{{errorType}}</span></td>
+  </tr>
+  <tr>
+  <td>Adresa objekta:</td>
+  <td><input type="text" name="adresa" id="adresa" [(ngModel)]="adress"></td>
+  <td><span *ngIf='errorAdress' class="errorClass">{{errorAdress}}</span></td>
+  </tr>
+  <tr>
+  <td>Broj prostorija:</td>
+  <td>
+  <input type="number" name="brojProstorija" id="brojProstorija" [(ngModel)]="rooms"></td>
+  <td><span *ngIf='errorrooms' class="errorClass">{{errorrooms}}</span></td>
+  </tr>
+  <tr>
+  <td>Kvadratura:</td>
+  <td>
+  <input type="number" name="kvadratura" id="kvadratura" [(ngModel)]="square"></td>
+  <td>
+  <span *ngIf='errorsquare' class="errorClass">{{errorsquare}}</span></td>
+  </tr>
+  <tr>
+    <td>
+  <button type="button" (click)="prelazakNaCrtanje()" class="button">Sledeći korak</button></td>
+  </tr>
+  <tr>
+  <td *ngIf="crtaj==0">Dimenzije prve prostorije:</td>
+  <td>
+  <input type="number" name="r1x" [(ngModel)]="width[0]" *ngIf="crtaj==0" placeholder="Sirina">
+  <br>
+  <input type="number" name="r1y" [(ngModel)]="height[0]" *ngIf="crtaj==0" placeholder="Duzina">
+</td>
+  <td>
+    <button class="button" *ngIf="crtaj==0" (click)="addDoor(0)">Dodaj vrata</button><button class="button" *ngIf="crtaj==0" (click)="finishDoor(0)">Potvrdi vrata</button> <br><button class="button" *ngIf="crtaj==0" (click)="finishRoom(0)">Zavrsi prvu prostoriju</button><button class="button" *ngIf="Rooms[0].finished && crtaj!=0" (click)="updateRoom(0)">Uredi prvu prostoriju</button>
+</td>
+  <td>
+    
+  <span *ngIf='errorPrva && crtaj==0' class="errorClass">{{errorPrva}}</span></td>
+  <td>
+    
+    <span *ngIf='errorDoor && crtaj==0' class="errorClass">{{errorDoor}}</span></td>
+  </tr>
+  <tr>
+    <td *ngIf="crtaj==1 && rooms>=2">Dimenzije druge prostorije:</td>
+    <td>
+    <input type="number" name="r1x" [(ngModel)]="width[1]" *ngIf="crtaj==1 && rooms>=2" placeholder="Sirina">
+    <br>
+    <input type="number" name="r1y" [(ngModel)]="height[1]" *ngIf="crtaj==1 && rooms>=2" placeholder="Duzina"></td>
+    <td>
+        <button class="button" *ngIf="crtaj==1 && rooms>=2" (click)="addDoor(1)">Dodaj vrata</button><button class="button" *ngIf="crtaj==1 && rooms>=2" (click)="finishDoor(1)">Potvrdi vrata</button><button class="button" *ngIf="crtaj==1 && rooms>=2" (click)="finishRoom(1)">Zavrsi drugu prostoriju</button><button class="button" *ngIf="Rooms[1].finished && rooms>=2 && crtaj!=1" (click)="updateRoom(1)">Uredi drugu prostoriju</button>
+    </td>
+    <td>
+        <span *ngIf='errorDoor && crtaj==1' class="errorClass">{{errorDoor}}</span></td>
+    </tr>
+
+
+    <tr>
+        <td *ngIf="crtaj==2 && rooms>=3">Dimenzije trece prostorije:</td>
+        <td>
+        <input type="number" name="r1x" [(ngModel)]="width[2]" *ngIf="crtaj==2 && rooms>=3" placeholder="Sirina">
+        <br>
+        <input type="number" name="r1y" [(ngModel)]="height[2]" *ngIf="crtaj==2 && rooms>=3" placeholder="Duzina"></td>
+        <td>
+            <button class="button" *ngIf="crtaj==2 && rooms>=3" (click)="addDoor(2)">Dodaj vrata</button><button class="button" *ngIf="crtaj==2 && rooms>=3" (click)="finishDoor(2)">Potvrdi vrata</button><button class="button" *ngIf="crtaj==2 && rooms>=3" (click)="finishRoom(2)">Zavrsi trecu prostoriju</button><button class="button" *ngIf="Rooms[2].finished && rooms==3 && crtaj!=2" (click)="updateRoom(2)">Uredi trecu prostoriju</button>
+        </td>
+        <td>
+            <span *ngIf='errorDoor && crtaj==2' class="errorClass">{{errorDoor}}</span></td>
+        </tr>
+    
+    <tr>
+    
+<!-- PAZI NA USLOVE ZA ERRORE -->
+
+</tr>
+<tr>
+    <td>
+        <button type="button" (click)="reset()" class="button" *ngIf="crtaj>=0">Resetuj canvas</button><button type="button" class="button" *ngIf="crtaj>=0 && crtaj>=rooms-1" (click)="sacuvajNacrt()">Dodaj objekat</button>
+
+
+    </td>
+    <td>
+        <span *ngIf='errorAlert' class="errorClass">{{errorAlert}}</span>
+    </td>
+</tr>
+</table>
+</form>
+</div>
+<div *ngIf="alertMessage" class="row loginMenu successClass">
+    {{alertMessage}}
+</div>
+<div class="loginMenu">
+    <canvas #canvasEl (mousedown)="startCrtanje($event)" (mouseup)="krajCrtanje($event)"></canvas>
+
+</div>
+<hr class="line">
+
+<h2 class="row loginMenu">Dodaj objekat kroz fajl</h2>
+
+<div class="loginMenu text-center">
+<form enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>
+                JSON fajl sa objektom:
+            </td>
+            <td>
+                <input type="file" name="objekat" (change)="onFileSelected($event)" accept=".json">
+            </td>
+            <td>
+                <span *ngIf='errorFile' class="errorClass">{{errorFile}}</span>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="button" (click)="dodajObjekat()">Dodaj objekat</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+</div>
+<div *ngIf="alertFile" class="row loginMenu successClass">
+    {{alertFile}}
+</div>
+
+

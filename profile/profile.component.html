@@ -1,0 +1,127 @@
+<mat-menu>
+</mat-menu>
+
+
+
+<div class="container-fluid">
+<!--Izmeniti kad je agencija da se prikazuje drugi meni --> 
+    <div class="row profile">
+        <div class="col">
+            <button mat-menu-item class="matMenuFont">Profil</button>
+        </div>
+      
+        <div class="col" *ngIf="client">
+            <button mat-menu-item (click)="objects()" class="matMenuFont">Objekti</button>
+        </div>
+        <div class="col" *ngIf="client">
+            <button mat-menu-item (click)="agencies()" class="matMenuFont">Agencije</button>
+        </div>
+        <div class="col" *ngIf="!client">
+            <button mat-menu-item (click)="workers()" class="matMenuFont">Radnici</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="business()" class="matMenuFont">Poslovi</button>
+        </div> 
+        <div class="col">
+            <button mat-menu-item (click)="logout()" class="matMenuFont">Izloguj se</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="changePassword()" class="matMenuFont">Promeni lozinku</button>
+        </div>
+        <div class="col">
+            <button mat-menu-item (click)="back()" class="matMenuFont">Nazad</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="profile">
+   
+        <form enctype="multipart/form-data" (submit)="update()">
+
+        <table>
+           
+            <tr *ngIf="!client">
+                <td>Naziv agencije:</td>
+                <td><input type="text" name="aname" [(ngModel)]="korisnik.name"></td>
+            </tr>
+           
+            <tr *ngIf="!client">
+                <td>Država:</td>
+                <td><input type="text" name="adress" [(ngModel)]="korisnik.country"></td>
+            </tr>
+            <tr *ngIf="!client">
+                <td>Grad:</td>
+                <td><input type="text" name="city" [(ngModel)]="korisnik.city"></td>
+            </tr>
+            <tr *ngIf="!client">
+                <td>Ulica:</td>
+                <td><input type="text" name="street" [(ngModel)]="korisnik.street"></td>
+            </tr>
+            
+            
+            <tr *ngIf="!client">
+                <td>Opis:</td>
+                <td><input type="text" name="descr" [(ngModel)]="korisnik.description"></td>
+            </tr>
+          
+            
+       
+    
+    
+            <tr *ngIf="client">
+                <td>Ime:</td>
+                <td><input type="text" name="name" [(ngModel)]="korisnik.firstname"></td>
+            </tr>
+            <tr *ngIf="client">
+                <td>Prezime:</td>
+                <td><input type="text" name="lastname" [(ngModel)]="korisnik.lastname"></td>
+            </tr>
+          
+            
+            <tr>
+                <td>Kontakt telefon:</td>
+                <td><input type="tel" name="phone"
+                     [(ngModel)]="korisnik.phone"></td>
+                <td> <span *ngIf='errorPhone' class="errorClass">{{errorPhone}}</span></td>
+      
+            </tr>
+            <tr>
+                <td>Elektronska pošta:</td>
+                <td><input type="text" name="email" [(ngModel)]="korisnik.email" req></td>
+                <td> <span *ngIf='errorEmail' class="errorClass">{{errorEmail}}</span></td>
+            </tr>
+            <tr>
+                <td>Profilna fotografija:</td>
+                <td>
+                    <input type="file" name="image" accept="image/*" (change)="onFileSelected($event)">
+    
+                </td>
+                <td> <span *ngIf='errorFile' class="errorClass">{{errorFile}}</span></td>
+    
+    
+            </tr>
+            
+            <tr>
+                <td>
+                    <button type="submit" class="button">Ažuriraj</button>
+                </td>
+            </tr>
+            <tr *ngIf="error">
+                <td class="errorClass" colspan="2">
+                    {{error}}
+                </td>
+            </tr>
+            
+        
+    
+       
+        </table>
+        </form>
+   
+
+</div>
+<br>
+<div class="profile successClass">
+    {{alertMessage}}
+</div>
