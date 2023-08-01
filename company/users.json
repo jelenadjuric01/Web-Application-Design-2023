@@ -1,0 +1,149 @@
+[{
+  "_id": {
+    "$oid": "64873f8213ff27d126f1a1b8"
+  },
+  "username": "jeka",
+  "password": "Jeka123!",
+  "type": "administrator",
+  "profile": null,
+  "phone": "+381692001611",
+  "email": "admin@gmail.com"
+},{
+  "_id": {
+    "$oid": "648c3a323377aece03c46c8b"
+  },
+  "type": "forbiden",
+  "emails": [
+    "peraperic@gmail.com",
+    "pera@gmail.com",
+    "peraperic2@gmail.com",
+    "werte@gmail.com"
+  ],
+  "usernames": [
+    "pera",
+    "pera1",
+    "pera2",
+    "Zika"
+  ]
+},{
+  "_id": {
+    "$oid": "64a8344db232b2ef5d2707f5"
+  },
+  "username": "mermeta",
+  "password": "Mermeta1!",
+  "type": "agencija",
+  "profile": "user.jpg",
+  "phone": "0605004409",
+  "email": "info@mermeta.rs",
+  "approved": true,
+  "emails": [],
+  "usernames": [],
+  "city": "Beograd",
+  "country": "Srbija",
+  "description": "Studio za izradu nameštaja i uređenje enterijera",
+  "name": "Mermeta",
+  "pib": 111446208,
+  "street": "Omladinskih brigada 96"
+},{
+  "_id": {
+    "$oid": "64a8361ab232b2ef5d27080a"
+  },
+  "username": "marina",
+  "password": "Marina1!",
+  "type": "agencija",
+  "profile": "2408marina.jpg",
+  "phone": "+381692224499",
+  "email": "info@marinaenterijernica.rs",
+  "approved": true,
+  "emails": [],
+  "usernames": [],
+  "city": "Beograd",
+  "country": "Srbija",
+  "description": "Imate pitanje za nas, niste sigurni da li je određena usluga ona prava, želite saradnju? Kontaktirajte nas…",
+  "name": "Marina Enterijer",
+  "pib": 111446209,
+  "street": "Hopovska 90"
+},{
+  "_id": {
+    "$oid": "64a837c4b232b2ef5d27082c"
+  },
+  "username": "jeca",
+  "password": "Jeca123!",
+  "type": "klijent",
+  "profile": "user.jpg",
+  "phone": "0692001611",
+  "email": "djuricjelena611@gmail.com",
+  "approved": true,
+  "emails": [],
+  "usernames": [],
+  "firstname": "Jelena",
+  "lastname": "Djuric"
+},{
+  "_id": {
+    "$oid": "64a839c6b232b2ef5d27083b"
+  },
+  "username": "dizajn",
+  "password": "Dizajn1!",
+  "type": "agencija",
+  "profile": "16591-200x200.jpg",
+  "phone": "+381605431020",
+  "email": "dadoen@gmail.com",
+  "approved": true,
+  "emails": [],
+  "usernames": [],
+  "city": "Beograd",
+  "country": "Srbija",
+  "description": "Najlakši i najjeftiniji put do prelepog životnog prostora",
+  "name": "Dizajn Enterijera",
+  "pib": 111446206,
+  "street": "Vladetina 4"
+},{
+  "_id": {
+    "$oid": "64a83c52b232b2ef5d270873"
+  },
+  "username": "goca",
+  "password": "Goca123!",
+  "type": "klijent",
+  "profile": "user.jpg",
+  "phone": "0638361277",
+  "email": "gordana.ridjic.djuric2610@gmail.com",
+  "approved": true,
+  "emails": [],
+  "usernames": [],
+  "firstname": "Gordana",
+  "lastname": "Ridjic"
+},{
+  "_id": {
+    "$oid": "64a840f9b232b2ef5d2708cd"
+  },
+  "username": "straja",
+  "password": "Straja1!",
+  "type": "klijent",
+  "profile": "9108smiling_man.jpg",
+  "phone": "066421343",
+  "email": "straja@gmail.com",
+  "approved": false,
+  "emails": [],
+  "usernames": [],
+  "firstname": "Strahinja",
+  "lastname": "Stanisic"
+},{
+  "_id": {
+    "$oid": "64a842a3b232b2ef5d2708d7"
+  },
+  "username": "linea",
+  "password": "Linea1!",
+  "type": "agencija",
+  "profile": "user.jpg",
+  "phone": "+381692442070",
+  "email": "sales@lineamilanovic.com",
+  "approved": false,
+  "emails": [],
+  "usernames": [],
+  "city": "Beograd",
+  "country": "Srbija",
+  "description": "Vanserijski enterijeri za estete sa vizijom",
+  "name": "Linea Milanovic",
+  "pib": 105917693,
+  "street": "13. Oktobra 2d"
+}]

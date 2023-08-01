@@ -1,0 +1,109 @@
+[{
+  "_id": {
+    "$oid": "64a84d72b232b2ef5d2709ce"
+  },
+  "agency": "marina",
+  "object": "64a84ca2b232b2ef5d270999",
+  "deadline": {
+    "$date": "2023-08-04T00:00:00.000Z"
+  },
+  "status": "aktivan",
+  "client": "jeca",
+  "rooms": [
+    0,
+    2,
+    -2
+  ],
+  "offer": 78000,
+  "cancelReason": null
+},{
+  "_id": {
+    "$oid": "64a84dafb232b2ef5d270a1a"
+  },
+  "agency": "marina",
+  "object": "64a8488cb232b2ef5d270926",
+  "deadline": {
+    "$date": "2023-07-25T00:00:00.000Z"
+  },
+  "status": "aOdbijeno",
+  "client": "goca",
+  "rooms": [
+    -1,
+    -2,
+    -2
+  ],
+  "offer": null,
+  "cancelReason": null
+},{
+  "_id": {
+    "$oid": "64a84dbab232b2ef5d270a2d"
+  },
+  "agency": "dizajn",
+  "object": "64a84a9fb232b2ef5d27093d",
+  "deadline": {
+    "$date": "2023-07-18T00:00:00.000Z"
+  },
+  "status": "otkazan",
+  "client": "goca",
+  "rooms": [
+    3,
+    0,
+    0
+  ],
+  "offer": 50000,
+  "cancelReason": "Kasne"
+},{
+  "_id": {
+    "$oid": "64a84ffbb232b2ef5d270b8f"
+  },
+  "agency": "dizajn",
+  "object": "64a84fddb232b2ef5d270b48",
+  "deadline": {
+    "$date": "2023-08-05T00:00:00.000Z"
+  },
+  "status": "zavrsen",
+  "client": "goca",
+  "rooms": [
+    3,
+    3,
+    -2
+  ],
+  "offer": 79000,
+  "cancelReason": null
+},{
+  "_id": {
+    "$oid": "64a850a1b232b2ef5d270c67"
+  },
+  "agency": "marina",
+  "object": "64a8508ab232b2ef5d270c1e",
+  "deadline": {
+    "$date": "2023-07-26T00:00:00.000Z"
+  },
+  "status": "aktivan",
+  "client": "jeca",
+  "rooms": [
+    2,
+    -2,
+    -2
+  ],
+  "offer": 40000,
+  "cancelReason": null
+},{
+  "_id": {
+    "$oid": "64a85d0ab232b2ef5d2712e6"
+  },
+  "agency": "dizajn",
+  "object": "64a84ca2b232b2ef5d270999",
+  "deadline": {
+    "$date": "2023-07-26T00:00:00.000Z"
+  },
+  "status": "zavrsen",
+  "client": "jeca",
+  "rooms": [
+    3,
+    3,
+    -2
+  ],
+  "offer": 89000,
+  "cancelReason": null
+}]

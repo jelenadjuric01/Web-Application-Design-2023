@@ -1,0 +1,302 @@
+[{
+  "_id": {
+    "$oid": "64a8488cb232b2ef5d270926"
+  },
+  "type": "kuca",
+  "adress": "Djuriceva 20/13",
+  "rooms": 1,
+  "square": 50,
+  "client": "goca",
+  "Rooms": [
+    {
+      "startX": 111,
+      "startY": 39,
+      "height": 50,
+      "width": 50,
+      "doors": [
+        {
+          "startX": 147,
+          "startY": 89,
+          "direction": 4,
+          "_id": {
+            "$oid": "64a8488cb232b2ef5d270928"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a8488cb232b2ef5d270927"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a8488cb232b2ef5d270929"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a8488cb232b2ef5d27092a"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "64a84a9fb232b2ef5d27093d"
+  },
+  "type": "stan",
+  "adress": "Belokrajinska 1",
+  "rooms": 3,
+  "square": 80,
+  "client": "goca",
+  "Rooms": [
+    {
+      "startX": 61,
+      "startY": 18,
+      "height": 40,
+      "width": 40,
+      "doors": [
+        {
+          "startX": 101,
+          "startY": 35,
+          "direction": 2,
+          "_id": {
+            "$oid": "64a84a9fb232b2ef5d27093f"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84a9fb232b2ef5d27093e"
+      }
+    },
+    {
+      "startX": 101,
+      "startY": 18,
+      "height": 40,
+      "width": 50,
+      "doors": [
+        {
+          "startX": 118,
+          "startY": 58,
+          "direction": 4,
+          "_id": {
+            "$oid": "64a84a9fb232b2ef5d270941"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84a9fb232b2ef5d270940"
+      }
+    },
+    {
+      "startX": 61,
+      "startY": 58,
+      "height": 40,
+      "width": 100,
+      "doors": [
+        {
+          "startX": 75,
+          "startY": 58,
+          "direction": 3,
+          "_id": {
+            "$oid": "64a84a9fb232b2ef5d270943"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84a9fb232b2ef5d270942"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "64a84ca2b232b2ef5d270999"
+  },
+  "type": "kuca",
+  "adress": "Bulevar kralja Aleksandra 73",
+  "rooms": 2,
+  "square": 80,
+  "client": "jeca",
+  "Rooms": [
+    {
+      "startX": 93,
+      "startY": 18,
+      "height": 50,
+      "width": 50,
+      "doors": [
+        {
+          "startX": 143,
+          "startY": 54,
+          "direction": 2,
+          "_id": {
+            "$oid": "64a84ca2b232b2ef5d27099b"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84ca2b232b2ef5d27099a"
+      }
+    },
+    {
+      "startX": 94,
+      "startY": 68,
+      "height": 50,
+      "width": 70,
+      "doors": [
+        {
+          "startX": 112,
+          "startY": 68,
+          "direction": 3,
+          "_id": {
+            "$oid": "64a84ca2b232b2ef5d27099d"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84ca2b232b2ef5d27099c"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a84ca2b232b2ef5d27099e"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "64a84fddb232b2ef5d270b48"
+  },
+  "type": "kuca",
+  "adress": "Save Kovacevic 3/14",
+  "rooms": 2,
+  "square": 70,
+  "client": "goca",
+  "Rooms": [
+    {
+      "startX": 84,
+      "startY": 25,
+      "height": 40,
+      "width": 30,
+      "doors": [
+        {
+          "startX": 98,
+          "startY": 65,
+          "direction": 4,
+          "_id": {
+            "$oid": "64a84fddb232b2ef5d270b4a"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84fddb232b2ef5d270b49"
+      }
+    },
+    {
+      "startX": 114,
+      "startY": 25,
+      "height": 70,
+      "width": 40,
+      "doors": [
+        {
+          "startX": 114,
+          "startY": 46,
+          "direction": 1,
+          "_id": {
+            "$oid": "64a84fddb232b2ef5d270b4c"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a84fddb232b2ef5d270b4b"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a84fddb232b2ef5d270b4d"
+      }
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "64a8508ab232b2ef5d270c1e"
+  },
+  "type": "stan",
+  "adress": "Dimitrija Tucovica 3",
+  "rooms": 1,
+  "square": 50,
+  "client": "jeca",
+  "Rooms": [
+    {
+      "startX": 62,
+      "startY": 34,
+      "height": 50,
+      "width": 50,
+      "doors": [
+        {
+          "startX": 112,
+          "startY": 66,
+          "direction": 2,
+          "_id": {
+            "$oid": "64a8508ab232b2ef5d270c20"
+          }
+        }
+      ],
+      "finished": true,
+      "_id": {
+        "$oid": "64a8508ab232b2ef5d270c1f"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a8508ab232b2ef5d270c21"
+      }
+    },
+    {
+      "startX": 0,
+      "startY": 0,
+      "height": 0,
+      "width": 0,
+      "doors": [],
+      "finished": false,
+      "_id": {
+        "$oid": "64a8508ab232b2ef5d270c22"
+      }
+    }
+  ]
+}]

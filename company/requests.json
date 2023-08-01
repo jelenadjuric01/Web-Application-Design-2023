@@ -1,0 +1,15 @@
+[{
+  "_id": {
+    "$oid": "64a85aa1b232b2ef5d271080"
+  },
+  "agency": "marina",
+  "approved": true,
+  "workers": 0
+},{
+  "_id": {
+    "$oid": "64a85d8cb232b2ef5d27138f"
+  },
+  "agency": "dizajn",
+  "approved": true,
+  "workers": 1
+}]
